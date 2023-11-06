@@ -1,10 +1,11 @@
 import MainButtonRound from "@/components/button/main-button-round/MainButtonRound";
 import { useState } from "react";
-import InputBasic from "./component/input-basic/InputBasic";
-import SubButton from "./component/sub-button/SubButton";
-import styles from "./Register.module.scss";
+import InputBasic from "../../component/input-basic/InputBasic";
+import InputSubtitle from "../../component/input-subtitle/InputSubtitle";
+import SubButton from "../../component/sub-button/SubButton";
+import styles from "./RegForm.module.scss";
 
-const Register = () => {
+const RegForm = () => {
   const [id, setId] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
@@ -43,6 +44,7 @@ const Register = () => {
                 <InputBasic
                   value={password}
                   onChange={(value) => setPassword(value)}
+                  hide={true}
                 />
               </div>
               <div className={styles.subButton}></div>
@@ -50,9 +52,15 @@ const Register = () => {
             <div className={styles.inputContainer}>
               <div className={styles.inputSubTitle}>비밀번호 확인</div>
               <div className={styles.input}>
-                <InputBasic
+                <InputSubtitle
                   value={confirmPassword}
                   onChange={(value) => setConfirmPassword(value)}
+                  text={
+                    password === confirmPassword
+                      ? ""
+                      : "비밀번호가 일치하지 않습니다."
+                  }
+                  hide={true}
                 />
               </div>
             </div>
@@ -70,7 +78,7 @@ const Register = () => {
                 />
               </div>
               <div className={styles.subButton}>
-                <SubButton title="중복확인" onClick={() => {}} />
+                <SubButton title="인증하기" onClick={() => {}} />
               </div>
             </div>
             <div className={styles.inputContainer}>
@@ -82,7 +90,7 @@ const Register = () => {
                 />
               </div>
               <div className={styles.subButton}>
-                <SubButton title="중복확인" onClick={() => {}} />
+                <SubButton title="인증완료" onClick={() => {}} />
               </div>
             </div>
           </div>
@@ -95,4 +103,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegForm;
